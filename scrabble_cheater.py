@@ -1,6 +1,7 @@
 import sys
 import csv
 from collections import Counter
+import heapq
 
 SCORES  = {'A': 1, 'C': 3, 'B': 3, 'E': 1, 'D': 2, 'G': 2,
          'F': 4, 'I': 1, 'H': 4, 'K': 5, 'J': 8, 'M': 3,
@@ -45,10 +46,14 @@ def cheater_generator():
     '''
     for word in word_generator():
         if is_word(word):
-            yield (score(word), word)
+            yield (-score(word), word)
 
 
 if __name__ == '__main__':
-    result = sorted(cheater_generator(), reverse=True)
+    result = []
+    for pair in cheater_generator():
+        heapq.heappush(result, pair)
+
     for i in range(min(len(result), 10)):
-        print(result[i])
+        minus_score, word = heapq.heappop(result)
+        print(abs(minus_score), word)
