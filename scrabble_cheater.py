@@ -16,7 +16,7 @@ HAND_CHAR = HAND_CHAR.upper()
 HAND_COUNT = Counter(HAND_CHAR)
 
 
-print(NUM_WILDCARDS, HAND_CHAR, HAND_COUNT)
+# print(NUM_WILDCARDS, HAND_CHAR, HAND_COUNT)
 
 def word_generator():
     with open('sowpods.txt','r') as f: # open by default mode='r' (read)
